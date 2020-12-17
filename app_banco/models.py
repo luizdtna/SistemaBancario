@@ -45,7 +45,8 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(username, password,cpf, **extra_fields)
 
 class CustomUser(AbstractUser):
-
+    # Está classe está herdando da classe 'User' nativa do Django, o intuíto dessa herança é
+    # para implementar  as variáveis 'data_nascimento' e 'cpf'
     data_nascimento = models.DateField(blank=True,null=True)
     cpf = models.IntegerField(unique=True)
 
@@ -54,7 +55,7 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
     def __str__(self):
-        return str(self.cpf)
+        return str(self.get_full_name())
 
 class Conta(models.Model):
     cliente = models.OneToOneField(CustomUser,on_delete=models.CASCADE,related_name='cliente')
@@ -62,7 +63,14 @@ class Conta(models.Model):
     limite = models.DecimalField(max_digits=10, decimal_places=2)
     saldo = models.DecimalField(max_digits=10, decimal_places=2)
 
+    def __str__(self):
+        return str(self.numero) +': ' + self.cliente.first_name
+
 class Transacao(models.Model):
     conta = models.ForeignKey(Conta,on_delete=models.PROTECT,related_name='conta')
     tipo = models.CharField(max_length=1,choices=TIPO_TRANSACAO)
     valor = models.DecimalField(max_digits=10, decimal_places=2)
+    data = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.pk)
