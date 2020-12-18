@@ -3,7 +3,7 @@
 {%block title%}Home{%endblock%}
 
 {%block main%}
-<h4>Conta pessoal: Pessoa tal asd dsads asdasd </h4>
+<h4>Conta pessoal: {{cliente.get_full_name|title}} <br> <h5>numero da sua conta: {{cliente.cliente_conta.id}}</h5></h4>
 
 <div class="row" align="center">
     <div class="col">
@@ -14,7 +14,7 @@
         <div class="card border-primary mb-3" style="max-width: 18rem;">
             <div class="card-header">Saldo</div>
             <div class="card-body text-primary">
-                <p>512,00</p>
+                <p>{{cliente.cliente_conta.saldo}}</p>
             </div>
         </div>
     </class>
@@ -22,7 +22,7 @@
         <div class="card border-primary mb-3 ml-3" style="max-width: 18rem;">
             <div class="card-header">Limite</div>
             <div class="card-body text-primary">
-                <p>100,00</p>
+                <p>{{cliente.cliente_conta.limite}}</p>
             </div>
         </div>
     </div>

@@ -55,16 +55,16 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
     def __str__(self):
-        return str(self.get_full_name())
+        return str(self.pk) +': '+ self.get_full_name()
 
 class Conta(models.Model):
-    cliente = models.OneToOneField(CustomUser,on_delete=models.CASCADE,related_name='cliente')
-    numero = models.AutoField(unique=True, primary_key=True)
+    cliente_conta = models.OneToOneField(CustomUser,on_delete=models.CASCADE,related_name='cliente_conta')
+    #numero = models.AutoField(unique=True, primary_key=True)
     limite = models.DecimalField(max_digits=10, decimal_places=2)
     saldo = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return str(self.numero) +': ' + self.cliente.first_name
+        return str(self.pk) +': ' + self.cliente_conta.first_name
 
 class Transacao(models.Model):
     conta = models.ForeignKey(Conta,on_delete=models.PROTECT,related_name='conta')

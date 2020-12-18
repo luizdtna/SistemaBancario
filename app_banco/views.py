@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from app_banco.models import CustomUser, Conta
 from .forms import ClienteForm
 
@@ -20,13 +22,18 @@ def novo_cliente(request):
                                        data_nascimento=request.POST['data_nascimento'])
 
         # Cria uma conta e vincula ao novo cliente
-        Conta.objects.create(cliente=novo_cliente,saldo=request.POST['saldo'], limite=request.POST['limite'])
+        Conta.objects.create(cliente_conta=novo_cliente,saldo=request.POST['saldo'], limite=request.POST['limite'])
 
         return render(request, 'app_banco/novocliente.html', {'form': form, 'cliente_criado': True})
     return render(request, 'app_banco/novocliente.html', {'form': form})
 
+@login_required()
 def clienteTelaPrincipal(request):
-    #cliente = CustomUser.objects.get(request)
+    cliente = CustomUser.objects.get(pk=request.user.id)
 
 
-    return render(request,'app_banco/cliente_principal.html')
+    return render(request,'app_banco/cliente_principal.html',{'cliente': cliente})
+
+def my_logout(request):
+   logout(request)
+   return redirect('login') #Indiquei uma URL da aplicação

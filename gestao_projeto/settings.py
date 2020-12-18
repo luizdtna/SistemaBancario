@@ -125,3 +125,6 @@ STATICFILES_DIRS = [
     # (imagens, css,js...), vai procurar nesse arquivo, na Raiz
 ]
 AUTH_USER_MODEL = 'app_banco.CustomUser'
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = 'home_url'
