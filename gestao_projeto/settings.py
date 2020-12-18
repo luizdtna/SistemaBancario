@@ -121,6 +121,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-   'statics',
+   'statics',#Quando o django procurar por arquivos estáticos
+    # (imagens, css,js...), vai procurar nesse arquivo, na Raiz
 ]
 AUTH_USER_MODEL = 'app_banco.CustomUser'
