@@ -101,6 +101,13 @@ def transferencia(request):
         return render(request, 'app_banco/confirm_transferencia.html',
                       {'form': form, 'erros': erros})
 
+@login_required()
+def extrato(request):
+    transacoes = Transacao.objects.filter(conta=request.user.cliente_conta.id)
+    conta = Conta.objects.get(pk=request.user.id)
+    return render(request, 'app_banco/extrato.html',
+                  {'transacoes':transacoes, 'conta': conta})
+
 
 def my_logout(request):
     logout(request)
