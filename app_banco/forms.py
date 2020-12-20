@@ -11,3 +11,7 @@ class ClienteForm(forms.Form):
     data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     saldo = forms.DecimalField(max_digits=10, decimal_places=2)
     limite = forms.DecimalField(max_digits=10, decimal_places=2)
+
+class TransferenciaForm(forms.Form):
+    numero_da_conta = forms.IntegerField()
+    valor = forms.DecimalField(max_digits=10, decimal_places=2)

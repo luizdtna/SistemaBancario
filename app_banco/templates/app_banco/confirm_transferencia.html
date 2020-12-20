@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+
+
+{%block main%}
+
+{%if confirm%}
+<div class="alert alert-success" role="alert">
+    Transferencia realizada com sucesso! R${{valor}} foram enviados para {{info_cliente_debitado.cliente_conta.get_full_name}}
+</div>
+<a href="{%url 'home_url'%}" class="btn btn-primary">Ok</a>
+
+{%elif erros%}
+<div class="alert alert-danger" role="alert">
+    {%for erro in erros %}
+    {{erro}}<br>
+    {%endfor%}
+</div>
+<a href="{%url 'transferencia_url'%}" class="btn btn-primary">Voltar</a>
+{%endif%}
+
+{%endblock%}

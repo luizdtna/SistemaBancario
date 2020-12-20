@@ -5,8 +5,12 @@
 
 * Crie uma virtual enviroment:
     * linux: python3 -m venv venv
-    * windows: py -m venv env
-    
+    * windows: py -m venv venv
+  
+* Inicia a virtual enviroment:
+    * linux: source python venv/bin/activate
+    * windows: .\env\Scripts\activate
+  
 * instale as dependências:
     * pip install -r requirements.txt
   
@@ -18,5 +22,5 @@
     * python manage.py migrate
   
 * Abra no navegador o seguinte endereço:
-  * Tela principal: localhost:8000/
-  * Tela do gerente: localhost:8000/gestao/
+  * Tela do gerente (para criar novos clientes): localhost:8000/painel/gestao/ 
+  * Tela principal (para logar como um cliente): localhost:8000/

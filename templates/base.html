@@ -19,19 +19,24 @@
 <header>
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark mb-5">
-        <a href="#">Sistema bancario</a>
+        {%if user.is_anonymous%}
+        <a href="{%url 'login'%}">Sistema bancario</a>
+        {%else%}
+        <a href="{%url 'home_url'%}">Sistema bancario</a>
+        {%endif%}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
 
-
+            {%if not user.is_anonymous%}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a class="btn btn-sm btn-outline-danger" href="{%url 'logout'%}">Logout</a>
                 </li>
             </ul>
+            {%endif%}
         </div>
     </nav>
 </header>
@@ -42,7 +47,7 @@
 </div>
 <footer class="footer" style="background: black">
     <div class="container" align="center">
-        <span class="text-muted">Place sticky footer content here.</span>
+        <span class="text-muted">Trabalho pratico de: Tópicos Especiáis em Sistemas de Informação 2020/5 - SI/UFVJM </span>
     </div>
 </footer>
 
