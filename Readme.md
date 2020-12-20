@@ -1,7 +1,9 @@
 ###Sistema bancario 
 
+Developed by: Luiz Araujo e Daniela Soares
 
 ####Para executar o projeto:
+
 
 * Crie uma virtual enviroment:
     * linux: python3 -m venv venv
